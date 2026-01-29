@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meiyang Accessory | 日系花語</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        hana: {
+                            bg: '#FDFCF8',      /* 雲母色 (基底白) */
+                            pink: '#F2D7D5',    /* 淡紅藤 (花瓣粉) */
+                            green: '#D3DDC6',   /* 柳染 (嫩葉綠) */
+                            text: '#6E5D53',    /* 栗色 (文字) */
+                            accent: '#C78484',  /* 襲色 (強調) */
+                            line: '#E8E3DE',    /* 灰白線條 */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                        serif: ['Noto Serif TC', 'serif'],
+                    },
+                    boxShadow: {
+                        'paper': '0 4px 20px -2px rgba(110, 93, 83, 0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F9F7F2;
+            /* 模擬水彩暈染的背景 */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(242, 215, 213, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(211, 221, 198, 0.4) 0%, transparent 40%);
+        }
+        
+        /* 櫻花飄落動畫 */
+        .petal {
+            position: absolute;
+            background-color: #FFEFF2;
+            border-radius: 150% 0 150% 0;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                opacity: 0;
+                transform: translate(0, -10vh) rotate(0deg);
+            }
+            10% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(20px, 100vh) rotate(360deg);
+            }
+        }
+
+        /* 讓容器看起來像一張高級信紙 */
+        .washi-card {
+            background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3h1v1H1V3zm2-2h1v1H3V1z' fill='%236e5d53' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .btn-hover-grow {
+            transition: all 0.4s ease;
+        }
+        .btn-hover-grow:hover {
+            letter-spacing: 0.1em;
+            background-color: rgba(242, 215, 213, 0.2);
+        }
+    </style>
+</head>
+<body class="text-hana-text min-h-screen flex flex-col items-center justify-center py-4 font-serif relative overflow-hidden">
+
+    <!-- 花瓣背景層 (裝飾用) -->
+    <div id="petals-container" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- 手機版面容器 -->
+    <main class="w-full max-w-[420px] min-h-[85vh] bg-hana-bg washi-card shadow-paper relative flex flex-col p-8 z-10 border border-white/50">
+        
+        <!-- 四角的裝飾線條 (日式傳統紋樣風格) -->
+        <div class="absolute top-4 left-4 w-16 h-16 border-t border-l border-hana-pink/50"></div>
+        <div class="absolute top-4 right-4 w-16 h-16 border-t border-r border-hana-pink/50"></div>
+        <div class="absolute bottom-4 left-4 w-16 h-16 border-b border-l border-hana-pink/50"></div>
+        <div class="absolute bottom-4 right-4 w-16 h-16 border-b border-r border-hana-pink/50"></div>
+
+        <!-- 頂部 Header -->
+        <header class="flex flex-col items-center mt-8 mb-10 relative">
+            <div class="relative mb-4">
+                <!-- 花環裝飾 -->
+                <svg class="absolute -top-3 -left-3 w-32 h-32 text-hana-green animate-[spin_10s_linear_infinite] opacity-30" viewBox="0 0 100 100">
+                    <path d="M50 10 A40 40 0 0 1 90 50 A40 40 0 0 1 50 90 A40 40 0 0 1 10 50 A40 40 0 0 1 50 10" fill="none" stroke="currentColor" stroke-dasharray="5,10" />
+                </svg>
+                
+                <div class="w-24 h-24 rounded-full overflow-hidden border border-hana-line p-1 bg-white relative z-10">
+                     <!-- 這裡可以放您的 Logo 圖片 -->
+                     <div class="w-full h-full rounded-full bg-[#FCF8F8] flex items-center justify-center">
+                         <span class="font-serif text-3xl text-hana-accent italic">M</span>
+                     </div>
+                </div>
+            </div>
+            
+            <h1 class="text-2xl font-semibold tracking-[0.2em] text-hana-text">MEIYANG</h1>
+            <p class="text-xs text-hana-accent/80 mt-2 tracking-widest uppercase font-sans">Botanical & Accessory</p>
+            
+            <!-- 分隔線 -->
+            <div class="flex items-center gap-2 mt-4 opacity-50">
+                <div class="h-[1px] w-8 bg-hana-text"></div>
+                <i data-lucide="flower-2" class="w-3 h-3 text-hana-accent"></i>
+                <div class="h-[1px] w-8 bg-hana-text"></div>
+            </div>
+        </header>
+
+        <!-- 社群 Icon -->
+        <div class="flex justify-center gap-6 mb-10">
+             <a href="https://www.instagram.com/meiyang.16888" target="_blank" class="group flex flex-col items-center gap-1">
+                <div class="w-10 h-10 flex items-center justify-center rounded-full border border-hana-line group-hover:border-hana-accent group-hover:text-hana-accent transition-colors">
+                    <i data-lucide="instagram" class="w-4 h-4"></i>
+                </div>
+            </a>
+            <a href="#" class="group flex flex-col items-center gap-1">
+                <div class="w-10 h-10 flex items-center justify-center rounded-full border border-hana-line group-hover:border-hana-accent group-hover:text-hana-accent transition-colors">
+                    <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                </div>
+            </a>
+            <a href="#" class="group flex flex-col items-center gap-1">
+                <div class="w-10 h-10 flex items-center justify-center rounded-full border border-hana-line group-hover:border-hana-accent group-hover:text-hana-accent transition-colors">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                </div>
+            </a>
+        </div>
+
+        <!-- 連結列表 (植物標籤風格) -->
+        <nav class="space-y-4 flex-grow px-2">
+            
+            <!-- Link 1 -->
+            <a href="#" class="btn-hover-grow block relative group">
+                <div class="relative border-b border-hana-line py-4 flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <span class="text-hana-accent opacity-60">01</span>
+                        <div class="h-8 w-[1px] bg-hana-line rotate-12"></div>
+                        <span class="font-medium tracking-wider">Shopee 蝦皮賣場</span>
+                    </div>
+                    <i data-lucide="sprout" class="w-4 h-4 text-hana-green opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:rotate-12"></i>
+                </div>
+            </a>
+
+            <!-- Link 2 -->
+            <a href="#" class="btn-hover-grow block relative group">
+                <div class="relative border-b border-hana-line py-4 flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <span class="text-hana-accent opacity-60">02</span>
+                        <div class="h-8 w-[1px] bg-hana-line rotate-12"></div>
+                        <span class="font-medium tracking-wider">In Stock 現貨專區</span>
+                    </div>
+                    <i data-lucide="flower" class="w-4 h-4 text-hana-pink opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:rotate-12"></i>
+                </div>
+            </a>
+
+             <!-- Link 3 -->
+             <a href="#" class="btn-hover-grow block relative group">
+                <div class="relative border-b border-hana-line py-4 flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <span class="text-hana-accent opacity-60">03</span>
+                        <div class="h-8 w-[1px] bg-hana-line rotate-12"></div>
+                        <span class="font-medium tracking-wider">Reviews 好評推薦</span>
+                    </div>
+                    <i data-lucide="star" class="w-4 h-4 text-hana-green opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:rotate-12"></i>
+                </div>
+            </a>
+
+        </nav>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center relative z-10">
+            <p class="text-[10px] text-hana-text/40 tracking-[0.3em] font-sans">FLORA & ACCESSORY</p>
+            <p class="text-[10px] text-hana-text/40 tracking-[0.2em] font-sans mt-1">© 2024 MEIYANG</p>
+        </footer>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        // 產生飄落的花瓣
+        function createPetals() {
+            const container = document.getElementById('petals-container');
+            const petalCount = 12; // 花瓣數量
+
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                
+                // 隨機大小、位置與動畫時間
+                const size = Math.random() * 10 + 5 + 'px';
+                petal.style.width = size;
+                petal.style.height = size;
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                
+                // 隨機顏色微調 (淺粉到白)
+                const colors = ['#FFEFF2', '#FADADD', '#FFF'];
+                petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+                container.appendChild(petal);
+            }
+        }
+
+        createPetals();
+    </script>
+</body>
+</html>
