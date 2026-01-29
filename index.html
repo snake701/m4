@@ -6,7 +6,7 @@
     <title>Meiyang Accessory | 日系花語</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -85,14 +85,14 @@
     <!-- 手機版面容器 -->
     <main class="w-full max-w-[420px] min-h-[85vh] bg-hana-bg washi-card shadow-paper relative flex flex-col p-8 z-10 border border-white/50">
         
-        <!-- 四角的裝飾線條 (日式傳統紋樣風格) -->
+        <!-- 四角的裝飾線條 -->
         <div class="absolute top-4 left-4 w-16 h-16 border-t border-l border-hana-pink/50"></div>
         <div class="absolute top-4 right-4 w-16 h-16 border-t border-r border-hana-pink/50"></div>
         <div class="absolute bottom-4 left-4 w-16 h-16 border-b border-l border-hana-pink/50"></div>
         <div class="absolute bottom-4 right-4 w-16 h-16 border-b border-r border-hana-pink/50"></div>
 
         <!-- 頂部 Header -->
-        <header class="flex flex-col items-center mt-8 mb-10 relative">
+        <header class="flex flex-col items-center mt-8 mb-8 relative">
             <div class="relative mb-4">
                 <!-- 花環裝飾 -->
                 <svg class="absolute -top-3 -left-3 w-32 h-32 text-hana-green animate-[spin_10s_linear_infinite] opacity-30" viewBox="0 0 100 100">
@@ -100,88 +100,126 @@
                 </svg>
                 
                 <div class="w-24 h-24 rounded-full overflow-hidden border border-hana-line p-1 bg-white relative z-10">
-                     <!-- 這裡可以放您的 Logo 圖片 -->
                      <div class="w-full h-full rounded-full bg-[#FCF8F8] flex items-center justify-center">
                          <span class="font-serif text-3xl text-hana-accent italic">M</span>
                      </div>
                 </div>
             </div>
             
-            <h1 class="text-2xl font-semibold tracking-[0.2em] text-hana-text">MEIYANG</h1>
-            <p class="text-xs text-hana-accent/80 mt-2 tracking-widest uppercase font-sans">Botanical & Accessory</p>
+            <h1 class="text-xl font-semibold tracking-[0.2em] text-hana-text">MEIYANG</h1>
+            <p class="text-[10px] text-hana-accent/80 mt-2 tracking-widest uppercase font-sans">Botanical & Accessory</p>
             
-            <!-- 分隔線 -->
             <div class="flex items-center gap-2 mt-4 opacity-50">
-                <div class="h-[1px] w-8 bg-hana-text"></div>
+                <div class="h-[1px] w-6 bg-hana-text"></div>
                 <i data-lucide="flower-2" class="w-3 h-3 text-hana-accent"></i>
-                <div class="h-[1px] w-8 bg-hana-text"></div>
+                <div class="h-[1px] w-6 bg-hana-text"></div>
             </div>
         </header>
 
-        <!-- 社群 Icon -->
-        <div class="flex justify-center gap-6 mb-10">
-             <a href="https://www.instagram.com/meiyang.16888" target="_blank" class="group flex flex-col items-center gap-1">
-                <div class="w-10 h-10 flex items-center justify-center rounded-full border border-hana-line group-hover:border-hana-accent group-hover:text-hana-accent transition-colors">
-                    <i data-lucide="instagram" class="w-4 h-4"></i>
-                </div>
-            </a>
-            <a href="#" class="group flex flex-col items-center gap-1">
-                <div class="w-10 h-10 flex items-center justify-center rounded-full border border-hana-line group-hover:border-hana-accent group-hover:text-hana-accent transition-colors">
-                    <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-                </div>
-            </a>
-            <a href="#" class="group flex flex-col items-center gap-1">
-                <div class="w-10 h-10 flex items-center justify-center rounded-full border border-hana-line group-hover:border-hana-accent group-hover:text-hana-accent transition-colors">
-                    <i data-lucide="mail" class="w-4 h-4"></i>
-                </div>
-            </a>
-        </div>
+        <!-- 新增：品牌簡介區塊 -->
+        <section class="text-center px-2 mb-8 space-y-4">
+            <div class="space-y-2">
+                <p class="text-sm leading-7 tracking-wider text-hana-text font-medium">
+                    以「花」為手作的出發點，<br>
+                    把花最美的姿態永久保存，<br>
+                    是另一種延續的美好。
+                </p>
+                <p class="text-xs leading-6 opacity-80 font-light mt-3">
+                    利用工藝樹脂、不凋花、乾燥花、日式凝膠<br>
+                    再搭配不同的異素材<br>
+                    讓飾品呈現出獨特的清新感
+                </p>
+                <p class="text-xs leading-6 opacity-80 font-light mt-3">
+                    期待「美揚日系手作飾品」能帶給妳喜悅<br>
+                    成為精緻生活中的一部份
+                </p>
+            </div>
 
-        <!-- 連結列表 (植物標籤風格) -->
-        <nav class="space-y-4 flex-grow px-2">
-            
-            <!-- Link 1 -->
+            <!-- 特點標籤 -->
+            <div class="pt-4">
+                <div class="flex flex-wrap justify-center gap-2 mb-3">
+                    <span class="px-2 py-1 bg-hana-green/20 rounded text-[10px] text-hana-text tracking-widest">手工製作</span>
+                    <span class="px-2 py-1 bg-hana-green/20 rounded text-[10px] text-hana-text tracking-widest">原創飾品</span>
+                    <span class="px-2 py-1 bg-hana-green/20 rounded text-[10px] text-hana-text tracking-widest">日式手作</span>
+                    <span class="px-2 py-1 bg-hana-green/20 rounded text-[10px] text-hana-text tracking-widest">異素材結合</span>
+                </div>
+                <div class="text-[10px] text-hana-accent/90 tracking-widest border-t border-hana-line/50 pt-2 inline-block px-4">
+                    品項：耳環 · 項鍊 · 手鍊 · 髮飾 · 髮夾 · 吊飾 · 配件
+                </div>
+            </div>
+        </section>
+
+        <!-- 連結列表 -->
+        <nav class="space-y-3 w-full px-2 mb-8">
             <a href="#" class="btn-hover-grow block relative group">
-                <div class="relative border-b border-hana-line py-4 flex items-center justify-between">
-                    <div class="flex items-center gap-4">
-                        <span class="text-hana-accent opacity-60">01</span>
-                        <div class="h-8 w-[1px] bg-hana-line rotate-12"></div>
-                        <span class="font-medium tracking-wider">Shopee 蝦皮賣場</span>
+                <div class="relative border-b border-hana-line py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="text-hana-accent opacity-60 text-xs">01</span>
+                        <div class="h-6 w-[1px] bg-hana-line rotate-12"></div>
+                        <span class="font-medium tracking-wider text-sm">Shopee 蝦皮賣場</span>
                     </div>
                     <i data-lucide="sprout" class="w-4 h-4 text-hana-green opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:rotate-12"></i>
                 </div>
             </a>
-
-            <!-- Link 2 -->
             <a href="#" class="btn-hover-grow block relative group">
-                <div class="relative border-b border-hana-line py-4 flex items-center justify-between">
-                    <div class="flex items-center gap-4">
-                        <span class="text-hana-accent opacity-60">02</span>
-                        <div class="h-8 w-[1px] bg-hana-line rotate-12"></div>
-                        <span class="font-medium tracking-wider">In Stock 現貨專區</span>
+                <div class="relative border-b border-hana-line py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="text-hana-accent opacity-60 text-xs">02</span>
+                        <div class="h-6 w-[1px] bg-hana-line rotate-12"></div>
+                        <span class="font-medium tracking-wider text-sm">In Stock 現貨專區</span>
                     </div>
                     <i data-lucide="flower" class="w-4 h-4 text-hana-pink opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:rotate-12"></i>
                 </div>
             </a>
-
-             <!-- Link 3 -->
              <a href="#" class="btn-hover-grow block relative group">
-                <div class="relative border-b border-hana-line py-4 flex items-center justify-between">
-                    <div class="flex items-center gap-4">
-                        <span class="text-hana-accent opacity-60">03</span>
-                        <div class="h-8 w-[1px] bg-hana-line rotate-12"></div>
-                        <span class="font-medium tracking-wider">Reviews 好評推薦</span>
+                <div class="relative border-b border-hana-line py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="text-hana-accent opacity-60 text-xs">03</span>
+                        <div class="h-6 w-[1px] bg-hana-line rotate-12"></div>
+                        <span class="font-medium tracking-wider text-sm">Reviews 好評推薦</span>
                     </div>
                     <i data-lucide="star" class="w-4 h-4 text-hana-green opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:rotate-12"></i>
                 </div>
             </a>
-
         </nav>
 
-        <!-- Footer -->
-        <footer class="mt-12 text-center relative z-10">
-            <p class="text-[10px] text-hana-text/40 tracking-[0.3em] font-sans">FLORA & ACCESSORY</p>
-            <p class="text-[10px] text-hana-text/40 tracking-[0.2em] font-sans mt-1">© 2024 MEIYANG</p>
+        <!-- 更新：社群追蹤區塊 -->
+        <div class="w-full bg-white/60 p-5 rounded-xl border border-hana-line/60 mb-6 relative overflow-hidden group">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-hana-pink to-hana-green opacity-50"></div>
+            
+            <div class="text-center space-y-3 relative z-10">
+                <h3 class="text-hana-accent font-medium tracking-widest text-sm flex items-center justify-center gap-2">
+                    <i data-lucide="instagram" class="w-4 h-4"></i> 追蹤 IG 搶先看
+                </h3>
+                
+                <p class="text-xs text-hana-text/90 tracking-wide">
+                    歡迎關注 ➕ 🔍 <span class="font-sans font-bold text-hana-text ml-1">meiyang.16888</span>
+                </p>
+
+                <!-- IG 按鈕 -->
+                <a href="https://www.instagram.com/meiyang.16888" target="_blank" class="block w-full py-2 bg-hana-pink/20 hover:bg-hana-pink/30 text-hana-text rounded-lg text-xs tracking-wider transition-colors my-2">
+                    前往 Instagram
+                </a>
+
+                <div class="flex justify-center flex-wrap gap-x-3 gap-y-1 text-[10px] text-hana-text/60 font-sans">
+                    <span>▫️新品搶先看</span>
+                    <span>▫️不定時好康優惠</span>
+                    <span>▫️加碼抽好禮</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer & 合作邀約 -->
+        <footer class="mt-4 text-center relative z-10 space-y-4">
+            <div class="text-xs text-hana-text/70 tracking-wide border-t border-hana-line pt-4 px-4 inline-block">
+                歡迎合作邀約，可私訊聊聊<br>
+                <span class="text-[10px] opacity-80">小幫手會詳細回覆</span>
+            </div>
+            
+            <div class="mt-6">
+                <p class="text-[10px] text-hana-text/40 tracking-[0.3em] font-sans">FLORA & ACCESSORY</p>
+                <p class="text-[10px] text-hana-text/40 tracking-[0.2em] font-sans mt-1">© 2024 MEIYANG</p>
+            </div>
         </footer>
 
     </main>
