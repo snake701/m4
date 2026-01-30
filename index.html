@@ -75,10 +75,7 @@
     <!-- 花瓣背景層 -->
     <div id="petals-container" class="fixed inset-0 pointer-events-none z-0"></div>
 
-    <!-- 
-      主要容器 
-      md:min-h-[600px] 確保電腦版高度足夠
-    -->
+    <!-- 主要容器 -->
     <main class="w-full max-w-[420px] md:max-w-4xl min-h-[85vh] md:min-h-[600px] md:h-auto bg-hana-bg washi-card shadow-paper relative flex flex-col md:flex-row md:items-start md:gap-12 p-8 md:p-16 z-10 border border-hana-line transition-all duration-500">
         
         <!-- 四角的裝飾線條 -->
@@ -91,17 +88,27 @@
         <div class="flex flex-col items-center md:w-5/12 md:border-r md:border-hana-line md:pr-12 md:h-auto md:sticky md:top-16 shrink-0 self-start">
             <!-- Header -->
             <header class="flex flex-col items-center mb-8 md:mb-0 relative">
-                <div class="relative mb-6">
+                <div class="relative mb-6 group cursor-pointer" onclick="document.getElementById('logo-upload').click()">
                     <!-- 花環裝飾 -->
-                    <svg class="absolute -top-4 -left-4 w-40 h-40 text-hana-green animate-[spin_16s_linear_infinite] opacity-60" viewBox="0 0 100 100">
+                    <svg class="absolute -top-4 -left-4 w-40 h-40 text-hana-green animate-[spin_16s_linear_infinite] opacity-60 pointer-events-none" viewBox="0 0 100 100">
                         <path d="M50 10 A40 40 0 0 1 90 50 A40 40 0 0 1 50 90 A40 40 0 0 1 10 50 A40 40 0 0 1 50 10" fill="none" stroke="currentColor" stroke-dasharray="5,10" />
                     </svg>
                     
-                    <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-hana-line p-1 bg-white relative z-10 shadow-md">
-                        <div class="w-full h-full rounded-full bg-[#FFFBF0] flex items-center justify-center">
-                            <span class="font-serif text-5xl text-hana-accent italic font-bold">M</span>
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-hana-line p-1 bg-white relative z-10 shadow-md group-hover:shadow-lg transition-all">
+                        <!-- 預設圖片 (佔位符) -->
+                        <img id="logo-preview" 
+                             src="https://images.unsplash.com/photo-1490750967868-58cb75065ed6?auto=format&fit=crop&w=400&q=80" 
+                             alt="Mei Yang Logo" 
+                             class="w-full h-full object-cover rounded-full">
+                        
+                        <!-- 懸停提示層 -->
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-full">
+                            <span class="text-white text-xs font-bold bg-black/50 px-2 py-1 rounded">更換圖片</span>
                         </div>
                     </div>
+
+                    <!-- 隱藏的檔案上傳 Input -->
+                    <input type="file" id="logo-upload" accept="image/*" class="hidden" onchange="previewImage(event)">
                 </div>
                 
                 <h1 class="text-xl md:text-2xl font-bold tracking-widest text-hana-text mt-4 text-center leading-relaxed">
@@ -137,7 +144,7 @@
                         成為精緻生活中的一部份
                     </p>
                     
-                    <!-- 新增的介紹內容 -->
+                    <!-- 介紹內容 -->
                     <div class="mt-5 pt-5 border-t border-hana-line/50">
                         <h4 class="text-sm font-bold text-hana-text tracking-widest mb-2">Mei Yang 美揚日系手作飾品</h4>
                         <p class="text-xs md:text-sm leading-7 text-hana-secondary font-normal">
@@ -243,6 +250,19 @@
 
     <script>
         lucide.createIcons();
+
+        // 圖片預覽功能
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('logo-preview');
+                    img.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
 
         // 產生飄落的花瓣
         function createPetals() {
