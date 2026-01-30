@@ -61,17 +61,26 @@
             background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3h1v1H1V3zm2-2h1v1H3V1z' fill='%238C7B70' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
 
-        /* 新的動畫樣式：呼吸感旋轉 
-           結合了緩慢旋轉 (rotate) 與 輕微縮放 (scale)
+        /* 隱藏捲軸但保留功能 (for tags scroll) */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* 新的動畫樣式：花漾擺動 (Sway) 
+           模擬風鈴或花朵隨風輕輕擺動的感覺
         */
-        @keyframes breathe-spin {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.1); } /* 中途稍微放大 */
-            100% { transform: rotate(360deg) scale(1); }
+        @keyframes sway {
+            0%, 100% { transform: rotate(-8deg); }
+            50% { transform: rotate(8deg); }
         }
         
-        .animate-organic {
-            animation: breathe-spin 20s linear infinite; /* 20秒轉一圈，很慢很優雅 */
+        .animate-sway {
+            animation: sway 4s ease-in-out infinite; /* 4秒一個來回，輕柔緩慢 */
+            transform-origin: center center;
         }
     </style>
 </head>
@@ -96,14 +105,14 @@
                 <div class="relative mb-6">
                     <!-- 
                         Logo 動畫圈圈 
-                        目前的 class: animate-organic (呼吸感旋轉)
-                        若要純旋轉：改用 animate-[spin_10s_linear_infinite]
-                        若要擺動：改用 animate-bounce (但會上下跳，不建議)
+                        目前的 class: animate-sway (左右輕擺)
                     -->
-                    <svg class="absolute -top-4 -left-4 w-40 h-40 text-hana-green animate-organic opacity-60 pointer-events-none" viewBox="0 0 100 100">
-                        <!-- 改成兩圈虛線，增加層次感 -->
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="4,8" />
-                        <path d="M50 10 A40 40 0 0 1 90 50 A40 40 0 0 1 50 90 A40 40 0 0 1 10 50 A40 40 0 0 1 50 10" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="10,15" />
+                    <svg class="absolute -top-4 -left-4 w-40 h-40 text-hana-green animate-sway opacity-60 pointer-events-none" viewBox="0 0 100 100">
+                        <!-- 雙層裝飾線圈 -->
+                        <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="3,6" />
+                        <path d="M50 8 A42 42 0 0 1 92 50 A42 42 0 0 1 50 92 A42 42 0 0 1 8 50 A42 42 0 0 1 50 8" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="12,12" opacity="0.7"/>
+                        <!-- 裝飾葉子小點綴 -->
+                        <path d="M50 4 L52 0 L54 4" fill="none" stroke="currentColor" stroke-width="1" />
                     </svg>
                     
                     <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-hana-line p-1 bg-white relative z-10 shadow-md">
@@ -129,7 +138,7 @@
         <!-- 右側區塊：資訊內容 -->
         <div class="flex flex-col md:w-7/12 w-full md:pl-4">
             
-            <!-- 品牌簡介區塊 (文字排版優化) -->
+            <!-- 品牌簡介區塊 -->
             <section class="text-center md:text-left mb-8 space-y-6">
                 
                 <!-- 第一段：理念 -->
@@ -145,41 +154,43 @@
                     </p>
                 </div>
 
-                <!-- 第二段：品牌宣言 (加上背景色塊強調) -->
+                <!-- 第二段：品牌宣言 -->
                 <div class="py-4 px-5 bg-hana-green/10 rounded-lg border border-hana-green/20 relative mt-2">
                     <i data-lucide="quote" class="w-4 h-4 text-hana-green absolute top-2 left-2 opacity-50"></i>
                     <h4 class="text-sm font-bold text-hana-text tracking-widest mb-2 mt-1">Mei Yang 美揚日系手作飾品</h4>
-                    <p class="text-xs md:text-sm leading-7 text-hana-text/80 font-normal">
-                        日式職人手作技巧，搭配與結合不同異素材<br>
-                        使手作飾品呈現獨特美感，適合獨一無二特別的你/妳
+                    <p class="text-xs md:text-sm leading-7 text-hana-text/80 font-normal text-justify md:text-left">
+                        日式職人手作技巧，搭配與結合不同異素材，使手作飾品呈現獨特美感，適合獨一無二特別的你/妳。
                     </p>
                 </div>
 
-                <!-- 第三段：特點與品項 (整合為標籤雲) -->
+                <!-- 第三段：特點與品項 (調整為單行呈現) -->
                 <div class="pt-2 flex flex-col items-center md:items-start w-full">
-                    <!-- 特點 -->
-                    <div class="flex flex-wrap justify-center md:justify-start gap-2 mb-3">
-                        <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">手工製作</span>
-                        <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">原創飾品</span>
-                        <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">日式手作</span>
-                        <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">異素材結合</span>
+                    <!-- 特點 (單行橫向滑動/排列) -->
+                    <div class="flex flex-nowrap overflow-x-auto no-scrollbar w-full justify-center md:justify-start gap-2 mb-3 pb-1">
+                        <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest whitespace-nowrap">手工製作</span>
+                        <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest whitespace-nowrap">原創飾品</span>
+                        <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest whitespace-nowrap">日式手作</span>
+                        <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest whitespace-nowrap">異素材結合</span>
                     </div>
                     
-                    <!-- 品項 (優化排版：改成標籤樣式，而非長字串) -->
-                    <div class="flex flex-wrap justify-center md:justify-start gap-1.5 mt-1 border-t border-hana-line/50 pt-3 w-full">
-                        <span class="text-[11px] text-hana-accent font-bold tracking-widest mr-1 self-center">品項：</span>
-                        <span class="px-2 py-0.5 border border-hana-line rounded text-[11px] text-hana-secondary">耳環</span>
-                        <span class="px-2 py-0.5 border border-hana-line rounded text-[11px] text-hana-secondary">項鍊</span>
-                        <span class="px-2 py-0.5 border border-hana-line rounded text-[11px] text-hana-secondary">手鍊</span>
-                        <span class="px-2 py-0.5 border border-hana-line rounded text-[11px] text-hana-secondary">髮飾</span>
-                        <span class="px-2 py-0.5 border border-hana-line rounded text-[11px] text-hana-secondary">髮夾</span>
-                        <span class="px-2 py-0.5 border border-hana-line rounded text-[11px] text-hana-secondary">吊飾</span>
-                        <span class="px-2 py-0.5 border border-hana-line rounded text-[11px] text-hana-secondary">配件</span>
+                    <!-- 品項 (改為單行文字列表，更加日系簡約) -->
+                    <div class="mt-2 border-t border-hana-line/50 pt-3 w-full text-center md:text-left">
+                         <p class="text-[12px] text-hana-secondary tracking-wider leading-loose">
+                            <span class="text-hana-accent font-bold mr-1">品項：</span>
+                            耳環 · 項鍊 · 手鍊 · 髮飾 · 髮夾 · 吊飾 · 配件
+                        </p>
+                    </div>
+
+                    <!-- 合作邀約 (從 Footer 移到這裡) -->
+                    <div class="mt-4 w-full text-center md:text-left">
+                         <div class="text-xs text-hana-text font-medium tracking-wide inline-block py-2 px-4 border border-dashed border-hana-line rounded-md bg-white/50 w-full md:w-auto">
+                            歡迎合作邀約，可私訊聊聊 <span class="text-hana-accent font-normal ml-1">小幫手會盡速回復喔!!</span>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- 社群追蹤區塊 (位置：中) -->
+            <!-- 社群追蹤區塊 -->
             <div class="w-full bg-white/80 p-6 rounded-xl border border-hana-line mb-8 relative overflow-hidden group shadow-md hover:shadow-lg transition-shadow duration-300">
                 <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-hana-pink to-hana-green opacity-80"></div>
                 
@@ -206,7 +217,7 @@
                 </div>
             </div>
 
-            <!-- 精選作品區塊 (位置：下) -->
+            <!-- 精選作品區塊 -->
             <section class="mb-8 w-full mt-auto">
                 <div class="flex items-center gap-3 mb-4 justify-center md:justify-start opacity-80">
                     <span class="text-xs tracking-[0.2em] text-hana-accent font-bold uppercase">Selected Works</span>
@@ -245,13 +256,9 @@
                 </div>
             </section>
 
-            <!-- Footer & 合作邀約 -->
-            <footer class="mt-8 pt-6 border-t border-hana-line/30 flex flex-col items-center md:items-start gap-4 text-center md:text-left relative z-10 w-full">
-                <div class="text-xs text-hana-text font-medium tracking-wide">
-                    歡迎合作邀約，可私訊聊聊 <span class="text-hana-secondary font-normal ml-1">小幫手會盡速回復喔!!</span>
-                </div>
-                
-                <div class="w-full text-center md:text-left">
+            <!-- Footer (純版權宣告) -->
+            <footer class="mt-8 pt-6 border-t border-hana-line/30 flex flex-col items-center md:items-start text-center md:text-left relative z-10 w-full">
+                <div class="w-full text-center md:text-right">
                     <p class="text-[10px] text-hana-secondary/60 tracking-[0.2em] font-sans font-medium">© 2024 Mei Yang 美揚日系手作飾品</p>
                 </div>
             </footer>
