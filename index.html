@@ -70,51 +70,47 @@
         }
     </style>
 </head>
-<body class="text-hana-text min-h-screen flex flex-col items-center justify-center py-8 px-4 font-serif relative overflow-x-hidden selection:bg-hana-pink selection:text-hana-text">
+<body class="text-hana-text min-h-screen flex flex-col items-center justify-center py-4 md:py-8 px-2 md:px-4 font-serif relative overflow-x-hidden selection:bg-hana-pink selection:text-hana-text">
 
     <!-- 花瓣背景層 -->
     <div id="petals-container" class="fixed inset-0 pointer-events-none z-0"></div>
 
-    <!-- 主要容器 -->
-    <main class="w-full max-w-[420px] md:max-w-4xl min-h-[85vh] md:min-h-[600px] md:h-auto bg-hana-bg washi-card shadow-paper relative flex flex-col md:flex-row md:items-start md:gap-12 p-8 md:p-16 z-10 border border-hana-line transition-all duration-500">
+    <!-- 
+      主要容器 
+      修正：
+      1. w-[95%] max-w-[420px]：確保在超窄手機上留有邊距，但不會超過 420px。
+      2. p-6 md:p-16：手機版內距縮小，避免內容被擠壓。
+    -->
+    <main class="w-[95%] max-w-[420px] md:w-full md:max-w-4xl min-h-[85vh] md:min-h-[600px] md:h-auto bg-hana-bg washi-card shadow-paper relative flex flex-col md:flex-row md:items-start md:gap-12 p-6 md:p-16 z-10 border border-hana-line transition-all duration-500 mx-auto">
         
         <!-- 四角的裝飾線條 -->
-        <div class="absolute top-5 left-5 w-12 h-12 border-t border-l border-hana-accent/40"></div>
-        <div class="absolute top-5 right-5 w-12 h-12 border-t border-r border-hana-accent/40"></div>
-        <div class="absolute bottom-5 left-5 w-12 h-12 border-b border-l border-hana-accent/40"></div>
-        <div class="absolute bottom-5 right-5 w-12 h-12 border-b border-r border-hana-accent/40"></div>
+        <div class="absolute top-4 left-4 md:top-5 md:left-5 w-8 h-8 md:w-12 md:h-12 border-t border-l border-hana-accent/40"></div>
+        <div class="absolute top-4 right-4 md:top-5 md:right-5 w-8 h-8 md:w-12 md:h-12 border-t border-r border-hana-accent/40"></div>
+        <div class="absolute bottom-4 left-4 md:bottom-5 md:left-5 w-8 h-8 md:w-12 md:h-12 border-b border-l border-hana-accent/40"></div>
+        <div class="absolute bottom-4 right-4 md:bottom-5 md:right-5 w-8 h-8 md:w-12 md:h-12 border-b border-r border-hana-accent/40"></div>
 
         <!-- 左側區塊：品牌形象 -->
-        <div class="flex flex-col items-center md:w-5/12 md:border-r md:border-hana-line md:pr-12 md:h-auto md:sticky md:top-16 shrink-0 self-start">
+        <div class="flex flex-col items-center md:w-5/12 md:border-r md:border-hana-line md:pr-12 md:h-auto md:sticky md:top-16 shrink-0 self-start w-full">
             <!-- Header -->
             <header class="flex flex-col items-center mb-8 md:mb-0 relative">
-                <div class="relative mb-6 group cursor-pointer" onclick="document.getElementById('logo-upload').click()">
+                <div class="relative mb-6">
                     <!-- 花環裝飾 -->
                     <svg class="absolute -top-4 -left-4 w-40 h-40 text-hana-green animate-[spin_16s_linear_infinite] opacity-60 pointer-events-none" viewBox="0 0 100 100">
                         <path d="M50 10 A40 40 0 0 1 90 50 A40 40 0 0 1 50 90 A40 40 0 0 1 10 50 A40 40 0 0 1 50 10" fill="none" stroke="currentColor" stroke-dasharray="5,10" />
                     </svg>
                     
-                    <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-hana-line p-1 bg-white relative z-10 shadow-md group-hover:shadow-lg transition-all">
-                        <!-- 預設圖片 (佔位符) -->
-                        <img id="logo-preview" 
-                             src="https://images.unsplash.com/photo-1490750967868-58cb75065ed6?auto=format&fit=crop&w=400&q=80" 
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-hana-line p-1 bg-white relative z-10 shadow-md">
+                        <!-- Logo 圖片：使用您的圖片 S__153395212.jpg -->
+                        <img src="S__153395212.jpg" 
                              alt="Mei Yang Logo" 
                              class="w-full h-full object-cover rounded-full">
-                        
-                        <!-- 懸停提示層 -->
-                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-full">
-                            <span class="text-white text-xs font-bold bg-black/50 px-2 py-1 rounded">更換圖片</span>
-                        </div>
                     </div>
-
-                    <!-- 隱藏的檔案上傳 Input -->
-                    <input type="file" id="logo-upload" accept="image/*" class="hidden" onchange="previewImage(event)">
                 </div>
                 
                 <h1 class="text-xl md:text-2xl font-bold tracking-widest text-hana-text mt-4 text-center leading-relaxed">
                     Mei Yang<br>美揚日系手作飾品
                 </h1>
-                <p class="text-xs md:text-sm text-hana-secondary font-medium mt-3 tracking-[0.2em] uppercase font-sans">Botanical & Accessory</p>
+                <p class="text-xs md:text-sm text-hana-secondary font-medium mt-3 tracking-[0.2em] uppercase font-sans text-center">Botanical & Accessory</p>
                 
                 <div class="flex items-center gap-3 mt-6 opacity-60">
                     <div class="h-[1px] w-8 bg-hana-secondary"></div>
@@ -155,21 +151,21 @@
                 </div>
 
                 <!-- 特點標籤 -->
-                <div class="pt-5 flex flex-col items-center md:items-start">
+                <div class="pt-5 flex flex-col items-center md:items-start w-full">
                     <div class="flex flex-wrap justify-center md:justify-start gap-2 mb-3">
                         <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">手工製作</span>
                         <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">原創飾品</span>
                         <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">日式手作</span>
                         <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">異素材結合</span>
                     </div>
-                    <div class="text-[11px] md:text-xs text-hana-accent font-medium tracking-widest border-t border-hana-line pt-3 inline-block md:w-full text-center md:text-left mt-1">
+                    <div class="text-[11px] md:text-xs text-hana-accent font-medium tracking-widest border-t border-hana-line pt-3 inline-block w-full text-center md:text-left mt-1">
                         品項：耳環 · 項鍊 · 手鍊 · 髮飾 · 髮夾 · 吊飾 · 配件
                     </div>
                 </div>
             </section>
 
             <!-- 精選作品區塊 -->
-            <section class="mb-8">
+            <section class="mb-8 w-full">
                 <div class="flex items-center gap-3 mb-4 justify-center md:justify-start opacity-80">
                     <span class="text-xs tracking-[0.2em] text-hana-accent font-bold uppercase">Selected Works</span>
                     <div class="h-[1px] flex-grow bg-hana-line/60 max-w-[80px]"></div>
@@ -250,19 +246,6 @@
 
     <script>
         lucide.createIcons();
-
-        // 圖片預覽功能
-        function previewImage(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.getElementById('logo-preview');
-                    img.src = e.target.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        }
 
         // 產生飄落的花瓣
         function createPetals() {
