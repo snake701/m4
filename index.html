@@ -6,19 +6,20 @@
     <title>Meiyang Accessory | 日系花語</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         hana: {
-                            bg: '#FDFCF8',      /* 雲母色 (基底白) */
-                            pink: '#F2D7D5',    /* 淡紅藤 (花瓣粉) */
-                            green: '#D3DDC6',   /* 柳染 (嫩葉綠) */
-                            text: '#6E5D53',    /* 栗色 (文字) */
-                            accent: '#C78484',  /* 襲色 (強調) */
-                            line: '#E8E3DE',    /* 灰白線條 */
+                            bg: '#FFFEFA',      /* 象牙白 (更乾淨的底色) */
+                            pink: '#EBC5C2',    /* 稍深的乾燥玫瑰粉 */
+                            green: '#BDCFA9',   /* 稍深的抹茶綠 */
+                            text: '#54433A',    /* 深咖啡色 (提高閱讀對比) */
+                            accent: '#A65E5E',  /* 深胭脂紅 (強調色加深) */
+                            line: '#D4C5B9',    /* 暖灰褐線條 (邊框更明顯) */
+                            secondary: '#8C7B70' /* 次要文字顏色 */
                         }
                     },
                     fontFamily: {
@@ -26,7 +27,7 @@
                         serif: ['Noto Serif TC', 'serif'],
                     },
                     boxShadow: {
-                        'paper': '0 4px 20px -2px rgba(110, 93, 83, 0.08)',
+                        'paper': '0 8px 30px -4px rgba(84, 67, 58, 0.12)', /* 加深陰影層次 */
                     }
                 }
             }
@@ -34,17 +35,17 @@
     </script>
     <style>
         body {
-            background-color: #F9F7F2;
+            background-color: #F0EBE5; /* 背景稍微加深一點，襯托中間的卡片 */
             /* 模擬水彩暈染的背景 */
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(242, 215, 213, 0.4) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(211, 221, 198, 0.4) 0%, transparent 40%);
+                radial-gradient(circle at 10% 20%, rgba(235, 197, 194, 0.5) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(189, 207, 169, 0.5) 0%, transparent 40%);
         }
         
         /* 櫻花飄落動畫 */
         .petal {
             position: absolute;
-            background-color: #FFEFF2;
+            background-color: #F8E6E4; /* 花瓣顏色 */
             border-radius: 150% 0 150% 0;
             animation: fall linear infinite;
         }
@@ -55,7 +56,7 @@
                 transform: translate(0, -10vh) rotate(0deg);
             }
             10% {
-                opacity: 0.8;
+                opacity: 0.9;
             }
             100% {
                 opacity: 0;
@@ -65,19 +66,21 @@
 
         /* 讓容器看起來像一張高級信紙 */
         .washi-card {
-            background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3h1v1H1V3zm2-2h1v1H3V1z' fill='%236e5d53' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background-color: #FFFEFA;
+            background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3h1v1H1V3zm2-2h1v1H3V1z' fill='%238C7B70' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
         
         .btn-hover-grow {
             transition: all 0.4s ease;
         }
         .btn-hover-grow:hover {
-            letter-spacing: 0.1em;
-            background-color: rgba(242, 215, 213, 0.2);
+            letter-spacing: 0.05em;
+            background-color: rgba(235, 197, 194, 0.3);
+            border-color: #A65E5E;
         }
     </style>
 </head>
-<body class="text-hana-text min-h-screen flex flex-col items-center justify-center py-8 px-4 font-serif relative overflow-x-hidden">
+<body class="text-hana-text min-h-screen flex flex-col items-center justify-center py-8 px-4 font-serif relative overflow-x-hidden selection:bg-hana-pink selection:text-hana-text">
 
     <!-- 花瓣背景層 (裝飾用) -->
     <div id="petals-container" class="fixed inset-0 pointer-events-none z-0"></div>
@@ -87,38 +90,38 @@
       手機: w-full max-w-[420px] (單欄)
       電腦 (md以上): max-w-4xl (寬版)
     -->
-    <main class="w-full max-w-[420px] md:max-w-4xl min-h-[85vh] md:min-h-0 md:aspect-[16/9] md:h-auto bg-hana-bg washi-card shadow-paper relative flex flex-col md:flex-row md:items-center md:gap-12 p-8 md:p-16 z-10 border border-white/50 transition-all duration-500">
+    <main class="w-full max-w-[420px] md:max-w-4xl min-h-[85vh] md:min-h-0 md:aspect-[16/9] md:h-auto bg-hana-bg washi-card shadow-paper relative flex flex-col md:flex-row md:items-center md:gap-12 p-8 md:p-16 z-10 border border-hana-line transition-all duration-500">
         
-        <!-- 四角的裝飾線條 -->
-        <div class="absolute top-4 left-4 w-16 h-16 border-t border-l border-hana-pink/50"></div>
-        <div class="absolute top-4 right-4 w-16 h-16 border-t border-r border-hana-pink/50"></div>
-        <div class="absolute bottom-4 left-4 w-16 h-16 border-b border-l border-hana-pink/50"></div>
-        <div class="absolute bottom-4 right-4 w-16 h-16 border-b border-r border-hana-pink/50"></div>
+        <!-- 四角的裝飾線條 (加深顏色) -->
+        <div class="absolute top-5 left-5 w-12 h-12 border-t border-l border-hana-accent/40"></div>
+        <div class="absolute top-5 right-5 w-12 h-12 border-t border-r border-hana-accent/40"></div>
+        <div class="absolute bottom-5 left-5 w-12 h-12 border-b border-l border-hana-accent/40"></div>
+        <div class="absolute bottom-5 right-5 w-12 h-12 border-b border-r border-hana-accent/40"></div>
 
         <!-- 左側區塊：品牌形象 (電腦版置左，手機版置頂) -->
-        <div class="flex flex-col items-center md:w-5/12 md:border-r md:border-hana-line/60 md:pr-12 md:h-full md:justify-center shrink-0">
+        <div class="flex flex-col items-center md:w-5/12 md:border-r md:border-hana-line md:pr-12 md:h-full md:justify-center shrink-0">
             <!-- Header -->
             <header class="flex flex-col items-center mb-8 md:mb-0 relative">
                 <div class="relative mb-6">
-                    <!-- 花環裝飾 -->
-                    <svg class="absolute -top-4 -left-4 w-40 h-40 text-hana-green animate-[spin_12s_linear_infinite] opacity-30" viewBox="0 0 100 100">
+                    <!-- 花環裝飾 (加深) -->
+                    <svg class="absolute -top-4 -left-4 w-40 h-40 text-hana-green animate-[spin_16s_linear_infinite] opacity-60" viewBox="0 0 100 100">
                         <path d="M50 10 A40 40 0 0 1 90 50 A40 40 0 0 1 50 90 A40 40 0 0 1 10 50 A40 40 0 0 1 50 10" fill="none" stroke="currentColor" stroke-dasharray="5,10" />
                     </svg>
                     
-                    <div class="w-32 h-32 rounded-full overflow-hidden border border-hana-line p-1 bg-white relative z-10 shadow-sm">
-                        <div class="w-full h-full rounded-full bg-[#FCF8F8] flex items-center justify-center">
-                            <span class="font-serif text-5xl text-hana-accent italic">M</span>
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-hana-line p-1 bg-white relative z-10 shadow-md">
+                        <div class="w-full h-full rounded-full bg-[#FFFBF0] flex items-center justify-center">
+                            <span class="font-serif text-5xl text-hana-accent italic font-bold">M</span>
                         </div>
                     </div>
                 </div>
                 
-                <h1 class="text-2xl md:text-3xl font-semibold tracking-[0.25em] text-hana-text mt-2">MEIYANG</h1>
-                <p class="text-xs md:text-sm text-hana-accent/80 mt-3 tracking-[0.2em] uppercase font-sans">Botanical & Accessory</p>
+                <h1 class="text-2xl md:text-3xl font-bold tracking-[0.2em] text-hana-text mt-3">MEIYANG</h1>
+                <p class="text-xs md:text-sm text-hana-secondary font-medium mt-3 tracking-[0.2em] uppercase font-sans">Botanical & Accessory</p>
                 
-                <div class="flex items-center gap-3 mt-6 opacity-50">
-                    <div class="h-[1px] w-8 bg-hana-text"></div>
+                <div class="flex items-center gap-3 mt-6 opacity-60">
+                    <div class="h-[1px] w-8 bg-hana-secondary"></div>
                     <i data-lucide="flower-2" class="w-4 h-4 text-hana-accent"></i>
-                    <div class="h-[1px] w-8 bg-hana-text"></div>
+                    <div class="h-[1px] w-8 bg-hana-secondary"></div>
                 </div>
             </header>
         </div>
@@ -127,18 +130,19 @@
         <div class="flex flex-col md:w-7/12 md:h-full md:justify-center md:pl-4 w-full">
             
             <!-- 品牌簡介區塊 -->
-            <section class="text-center md:text-left mb-8 space-y-4">
+            <section class="text-center md:text-left mb-8 space-y-5">
                 <div class="space-y-3">
                     <p class="text-sm md:text-base leading-8 tracking-wider text-hana-text font-medium">
                         以「花」為手作的出發點，<br class="md:hidden">
                         把花最美的姿態永久保存，<br class="md:hidden">
                         是另一種延續的美好。
                     </p>
-                    <p class="text-xs md:text-sm leading-7 opacity-80 font-light mt-3">
+                    <!-- 移除 font-light，加深文字顏色 -->
+                    <p class="text-xs md:text-sm leading-7 text-hana-secondary font-normal mt-3">
                         利用工藝樹脂、不凋花、乾燥花、日式凝膠<br>
                         再搭配不同的異素材，讓飾品呈現出獨特的清新感
                     </p>
-                    <p class="text-xs md:text-sm leading-7 opacity-80 font-light mt-3">
+                    <p class="text-xs md:text-sm leading-7 text-hana-secondary font-normal mt-3">
                         期待「美揚日系手作飾品」能帶給妳喜悅<br>
                         成為精緻生活中的一部份
                     </p>
@@ -147,36 +151,38 @@
                 <!-- 特點標籤 -->
                 <div class="pt-5 flex flex-col items-center md:items-start">
                     <div class="flex flex-wrap justify-center md:justify-start gap-2 mb-3">
-                        <span class="px-3 py-1 bg-hana-green/20 rounded-full text-[11px] text-hana-text tracking-widest">手工製作</span>
-                        <span class="px-3 py-1 bg-hana-green/20 rounded-full text-[11px] text-hana-text tracking-widest">原創飾品</span>
-                        <span class="px-3 py-1 bg-hana-green/20 rounded-full text-[11px] text-hana-text tracking-widest">日式手作</span>
-                        <span class="px-3 py-1 bg-hana-green/20 rounded-full text-[11px] text-hana-text tracking-widest">異素材結合</span>
+                        <!-- 加深標籤文字與背景對比 -->
+                        <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">手工製作</span>
+                        <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">原創飾品</span>
+                        <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">日式手作</span>
+                        <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">異素材結合</span>
                     </div>
-                    <div class="text-[10px] md:text-xs text-hana-accent/90 tracking-widest border-t border-hana-line/50 pt-2 inline-block md:w-full text-center md:text-left">
+                    <div class="text-[11px] md:text-xs text-hana-accent font-medium tracking-widest border-t border-hana-line pt-3 inline-block md:w-full text-center md:text-left mt-1">
                         品項：耳環 · 項鍊 · 手鍊 · 髮飾 · 髮夾 · 吊飾 · 配件
                     </div>
                 </div>
             </section>
 
             <!-- 社群追蹤區塊 -->
-            <div class="w-full bg-white/60 p-6 rounded-xl border border-hana-line/60 mb-6 relative overflow-hidden group mt-auto shadow-sm">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-hana-pink to-hana-green opacity-50"></div>
+            <div class="w-full bg-white/80 p-6 rounded-xl border border-hana-line mb-6 relative overflow-hidden group mt-auto shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-hana-pink to-hana-green opacity-80"></div>
                 
                 <div class="text-center space-y-3 relative z-10">
-                    <h3 class="text-hana-accent font-medium tracking-widest text-sm flex items-center justify-center gap-2">
-                        <i data-lucide="instagram" class="w-4 h-4"></i> 追蹤 IG 搶先看
+                    <h3 class="text-hana-accent font-bold tracking-widest text-sm flex items-center justify-center gap-2">
+                        <i data-lucide="instagram" class="w-4 h-4"></i> 官方 Instagram
                     </h3>
                     
-                    <p class="text-xs text-hana-text/90 tracking-wide">
-                        歡迎關注 ➕ 🔍 <span class="font-sans font-bold text-hana-text ml-1">meiyang.16888</span>
+                    <p class="text-xs text-hana-text tracking-wide font-medium">
+                        歡迎關注 ➕ 🔍 <span class="font-sans font-bold text-hana-text ml-1 text-sm">meiyang.16888</span>
                     </p>
 
-                    <!-- IG 按鈕 -->
-                    <a href="https://www.instagram.com/meiyang.16888" target="_blank" class="block w-full py-2.5 bg-hana-pink/20 hover:bg-hana-pink/30 text-hana-text rounded-lg text-xs md:text-sm tracking-wider transition-colors my-2 font-medium">
-                        前往 Instagram
+                    <!-- IG 按鈕 (顏色加深) -->
+                    <a href="https://www.instagram.com/meiyang.16888" target="_blank" rel="noopener noreferrer" class="block w-full py-3 bg-hana-pink/30 border border-hana-pink/50 hover:bg-hana-pink/50 text-hana-text rounded-lg text-xs md:text-sm tracking-wider transition-all my-2 font-bold flex items-center justify-center gap-2 group-hover:scale-[1.02]">
+                        <span>追蹤 IG 搶先看</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                     </a>
 
-                    <div class="flex justify-center flex-wrap gap-x-4 gap-y-1 text-[11px] text-hana-text/60 font-sans">
+                    <div class="flex justify-center flex-wrap gap-x-4 gap-y-1 text-[11px] text-hana-secondary font-medium font-sans">
                         <span>▫️新品搶先看</span>
                         <span>▫️不定時好康優惠</span>
                         <span>▫️加碼抽好禮</span>
@@ -185,13 +191,13 @@
             </div>
 
             <!-- Footer & 合作邀約 -->
-            <footer class="mt-4 text-center md:text-left relative z-10 space-y-4 md:flex md:items-end md:justify-between md:space-y-0 md:border-t md:border-hana-line/30 md:pt-4">
-                <div class="text-xs text-hana-text/70 tracking-wide inline-block">
-                    歡迎合作邀約，可私訊聊聊 <span class="text-[10px] opacity-80 block md:inline md:ml-2">小幫手會詳細回覆</span>
+            <footer class="mt-4 text-center md:text-left relative z-10 space-y-4 md:flex md:items-end md:justify-between md:space-y-0 md:border-t md:border-hana-line md:pt-4">
+                <div class="text-xs text-hana-text font-medium tracking-wide inline-block">
+                    歡迎合作邀約，可私訊聊聊 <span class="text-[11px] text-hana-secondary block md:inline md:ml-2 font-normal">小幫手會詳細回覆</span>
                 </div>
                 
                 <div class="mt-6 md:mt-0 md:text-right">
-                    <p class="text-[10px] text-hana-text/40 tracking-[0.2em] font-sans">© 2024 MEIYANG</p>
+                    <p class="text-[10px] text-hana-secondary/60 tracking-[0.2em] font-sans font-medium">© 2024 MEIYANG</p>
                 </div>
             </footer>
         </div>
@@ -204,22 +210,22 @@
         // 產生飄落的花瓣
         function createPetals() {
             const container = document.getElementById('petals-container');
-            const petalCount = 15; // 稍微增加花瓣數量
+            const petalCount = 12; // 調整數量避免視覺雜亂
 
             for (let i = 0; i < petalCount; i++) {
                 const petal = document.createElement('div');
                 petal.classList.add('petal');
                 
                 // 隨機大小、位置與動畫時間
-                const size = Math.random() * 12 + 6 + 'px'; // 稍微大一點點
+                const size = Math.random() * 10 + 6 + 'px';
                 petal.style.width = size;
                 petal.style.height = size;
                 petal.style.left = Math.random() * 100 + 'vw';
-                petal.style.animationDuration = Math.random() * 6 + 6 + 's';
+                petal.style.animationDuration = Math.random() * 6 + 8 + 's';
                 petal.style.animationDelay = Math.random() * 5 + 's';
                 
-                // 隨機顏色微調 (淺粉到白)
-                const colors = ['#FFEFF2', '#FADADD', '#FFF'];
+                // 隨機顏色微調 (稍微加深一點點粉色)
+                const colors = ['#F8E6E4', '#FADADD', '#FFF0F5'];
                 petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 
                 container.appendChild(petal);
