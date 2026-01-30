@@ -77,17 +77,18 @@
 
     <!-- 
       主要容器 
-      修正：
-      1. w-[95%] max-w-[420px]：確保在超窄手機上留有邊距，但不會超過 420px。
-      2. p-6 md:p-16：手機版內距縮小，避免內容被擠壓。
+      修正版面寬度：
+      1. w-[96%]：讓手機版佔比更高，減少兩側留白。
+      2. max-w-[540px]：將手機版最大寬度從 420px 放寬至 540px，讓內容更橫向舒展。
+      3. md:max-w-4xl：電腦版維持寬版設計。
     -->
-    <main class="w-[95%] max-w-[420px] md:w-full md:max-w-4xl min-h-[85vh] md:min-h-[600px] md:h-auto bg-hana-bg washi-card shadow-paper relative flex flex-col md:flex-row md:items-start md:gap-12 p-6 md:p-16 z-10 border border-hana-line transition-all duration-500 mx-auto">
+    <main class="w-[96%] max-w-[540px] md:w-full md:max-w-4xl min-h-[85vh] md:min-h-[600px] md:h-auto bg-hana-bg washi-card shadow-paper relative flex flex-col md:flex-row md:items-start md:gap-12 p-5 md:p-16 z-10 border border-hana-line transition-all duration-500 mx-auto rounded-sm md:rounded-none">
         
         <!-- 四角的裝飾線條 -->
-        <div class="absolute top-4 left-4 md:top-5 md:left-5 w-8 h-8 md:w-12 md:h-12 border-t border-l border-hana-accent/40"></div>
-        <div class="absolute top-4 right-4 md:top-5 md:right-5 w-8 h-8 md:w-12 md:h-12 border-t border-r border-hana-accent/40"></div>
-        <div class="absolute bottom-4 left-4 md:bottom-5 md:left-5 w-8 h-8 md:w-12 md:h-12 border-b border-l border-hana-accent/40"></div>
-        <div class="absolute bottom-4 right-4 md:bottom-5 md:right-5 w-8 h-8 md:w-12 md:h-12 border-b border-r border-hana-accent/40"></div>
+        <div class="absolute top-3 left-3 md:top-5 md:left-5 w-8 h-8 md:w-12 md:h-12 border-t border-l border-hana-accent/40"></div>
+        <div class="absolute top-3 right-3 md:top-5 md:right-5 w-8 h-8 md:w-12 md:h-12 border-t border-r border-hana-accent/40"></div>
+        <div class="absolute bottom-3 left-3 md:bottom-5 md:left-5 w-8 h-8 md:w-12 md:h-12 border-b border-l border-hana-accent/40"></div>
+        <div class="absolute bottom-3 right-3 md:bottom-5 md:right-5 w-8 h-8 md:w-12 md:h-12 border-b border-r border-hana-accent/40"></div>
 
         <!-- 左側區塊：品牌形象 -->
         <div class="flex flex-col items-center md:w-5/12 md:border-r md:border-hana-line md:pr-12 md:h-auto md:sticky md:top-16 shrink-0 self-start w-full">
@@ -124,7 +125,7 @@
         <div class="flex flex-col md:w-7/12 w-full md:pl-4">
             
             <!-- 品牌簡介區塊 -->
-            <section class="text-center md:text-left mb-10 space-y-5">
+            <section class="text-center md:text-left mb-8 space-y-5">
                 <div class="space-y-3">
                     <p class="text-sm md:text-base leading-8 tracking-wider text-hana-text font-medium">
                         以「花」為手作的出發點，<br class="md:hidden">
@@ -164,8 +165,35 @@
                 </div>
             </section>
 
-            <!-- 精選作品區塊 -->
-            <section class="mb-8 w-full">
+            <!-- 互換位置：先顯示 社群追蹤區塊 -->
+            <div class="w-full bg-white/80 p-6 rounded-xl border border-hana-line mb-8 relative overflow-hidden group shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-hana-pink to-hana-green opacity-80"></div>
+                
+                <div class="text-center space-y-3 relative z-10">
+                    <h3 class="text-hana-accent font-bold tracking-widest text-sm flex items-center justify-center gap-2">
+                        <i data-lucide="instagram" class="w-4 h-4"></i> 官方 Instagram
+                    </h3>
+                    
+                    <p class="text-xs text-hana-text tracking-wide font-medium">
+                        歡迎關注 ➕ 🔍 <span class="font-sans font-bold text-hana-text ml-1 text-sm">meiyang.16888</span>
+                    </p>
+
+                    <!-- IG 按鈕 -->
+                    <a href="https://www.instagram.com/meiyang.16888" target="_blank" rel="noopener noreferrer" class="block w-full py-3 bg-hana-pink/30 border border-hana-pink/50 hover:bg-hana-pink/50 text-hana-text rounded-lg text-xs md:text-sm tracking-wider transition-all my-2 font-bold flex items-center justify-center gap-2 group-hover:scale-[1.02]">
+                        <span>追蹤 IG 搶先看</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+
+                    <div class="flex justify-center flex-wrap gap-x-4 gap-y-1 text-[11px] text-hana-secondary font-medium font-sans">
+                        <span>▫️新品搶先看</span>
+                        <span>▫️不定時好康優惠</span>
+                        <span>▫️加碼抽好禮</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 互換位置：後顯示 精選作品區塊 -->
+            <section class="mb-8 w-full mt-auto">
                 <div class="flex items-center gap-3 mb-4 justify-center md:justify-start opacity-80">
                     <span class="text-xs tracking-[0.2em] text-hana-accent font-bold uppercase">Selected Works</span>
                     <div class="h-[1px] flex-grow bg-hana-line/60 max-w-[80px]"></div>
@@ -203,34 +231,7 @@
                 </div>
             </section>
 
-            <!-- 社群追蹤區塊 -->
-            <div class="w-full bg-white/80 p-6 rounded-xl border border-hana-line mb-6 relative overflow-hidden group mt-auto shadow-md hover:shadow-lg transition-shadow duration-300">
-                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-hana-pink to-hana-green opacity-80"></div>
-                
-                <div class="text-center space-y-3 relative z-10">
-                    <h3 class="text-hana-accent font-bold tracking-widest text-sm flex items-center justify-center gap-2">
-                        <i data-lucide="instagram" class="w-4 h-4"></i> 官方 Instagram
-                    </h3>
-                    
-                    <p class="text-xs text-hana-text tracking-wide font-medium">
-                        歡迎關注 ➕ 🔍 <span class="font-sans font-bold text-hana-text ml-1 text-sm">meiyang.16888</span>
-                    </p>
-
-                    <!-- IG 按鈕 -->
-                    <a href="https://www.instagram.com/meiyang.16888" target="_blank" rel="noopener noreferrer" class="block w-full py-3 bg-hana-pink/30 border border-hana-pink/50 hover:bg-hana-pink/50 text-hana-text rounded-lg text-xs md:text-sm tracking-wider transition-all my-2 font-bold flex items-center justify-center gap-2 group-hover:scale-[1.02]">
-                        <span>追蹤 IG 搶先看</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-
-                    <div class="flex justify-center flex-wrap gap-x-4 gap-y-1 text-[11px] text-hana-secondary font-medium font-sans">
-                        <span>▫️新品搶先看</span>
-                        <span>▫️不定時好康優惠</span>
-                        <span>▫️加碼抽好禮</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer & 合作邀約 (修正排版) -->
+            <!-- Footer & 合作邀約 -->
             <footer class="mt-8 pt-6 border-t border-hana-line/30 flex flex-col items-center md:items-start gap-4 text-center md:text-left relative z-10 w-full">
                 <div class="text-xs text-hana-text font-medium tracking-wide">
                     歡迎合作邀約，可私訊聊聊 <span class="text-hana-secondary font-normal ml-1">小幫手會盡速回復喔!!</span>
@@ -276,3 +277,5 @@
     </script>
 </body>
 </html>
+
+
