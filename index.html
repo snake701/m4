@@ -50,23 +50,28 @@
         }
 
         @keyframes fall {
-            0% {
-                opacity: 0;
-                transform: translate(0, -10vh) rotate(0deg);
-            }
-            10% {
-                opacity: 0.9;
-            }
-            100% {
-                opacity: 0;
-                transform: translate(20px, 100vh) rotate(360deg);
-            }
+            0% { opacity: 0; transform: translate(0, -10vh) rotate(0deg); }
+            10% { opacity: 0.9; }
+            100% { opacity: 0; transform: translate(20px, 100vh) rotate(360deg); }
         }
 
         /* 讓容器看起來像一張高級信紙 */
         .washi-card {
             background-color: #FFFEFA;
             background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3h1v1H1V3zm2-2h1v1H3V1z' fill='%238C7B70' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        /* 新的動畫樣式：呼吸感旋轉 
+           結合了緩慢旋轉 (rotate) 與 輕微縮放 (scale)
+        */
+        @keyframes breathe-spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); } /* 中途稍微放大 */
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .animate-organic {
+            animation: breathe-spin 20s linear infinite; /* 20秒轉一圈，很慢很優雅 */
         }
     </style>
 </head>
@@ -75,13 +80,7 @@
     <!-- 花瓣背景層 -->
     <div id="petals-container" class="fixed inset-0 pointer-events-none z-0"></div>
 
-    <!-- 
-      主要容器 
-      修正版面寬度：
-      1. w-[96%]：讓手機版佔比更高，減少兩側留白。
-      2. max-w-[540px]：將手機版最大寬度從 420px 放寬至 540px，讓內容更橫向舒展。
-      3. md:max-w-4xl：電腦版維持寬版設計。
-    -->
+    <!-- 主要容器 -->
     <main class="w-[96%] max-w-[540px] md:w-full md:max-w-4xl min-h-[85vh] md:min-h-[600px] md:h-auto bg-hana-bg washi-card shadow-paper relative flex flex-col md:flex-row md:items-start md:gap-12 p-5 md:p-16 z-10 border border-hana-line transition-all duration-500 mx-auto rounded-sm md:rounded-none">
         
         <!-- 四角的裝飾線條 -->
@@ -95,13 +94,19 @@
             <!-- Header -->
             <header class="flex flex-col items-center mb-8 md:mb-0 relative">
                 <div class="relative mb-6">
-                    <!-- 花環裝飾 -->
-                    <svg class="absolute -top-4 -left-4 w-40 h-40 text-hana-green animate-[spin_16s_linear_infinite] opacity-60 pointer-events-none" viewBox="0 0 100 100">
-                        <path d="M50 10 A40 40 0 0 1 90 50 A40 40 0 0 1 50 90 A40 40 0 0 1 10 50 A40 40 0 0 1 50 10" fill="none" stroke="currentColor" stroke-dasharray="5,10" />
+                    <!-- 
+                        Logo 動畫圈圈 
+                        目前的 class: animate-organic (呼吸感旋轉)
+                        若要純旋轉：改用 animate-[spin_10s_linear_infinite]
+                        若要擺動：改用 animate-bounce (但會上下跳，不建議)
+                    -->
+                    <svg class="absolute -top-4 -left-4 w-40 h-40 text-hana-green animate-organic opacity-60 pointer-events-none" viewBox="0 0 100 100">
+                        <!-- 改成兩圈虛線，增加層次感 -->
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="4,8" />
+                        <path d="M50 10 A40 40 0 0 1 90 50 A40 40 0 0 1 50 90 A40 40 0 0 1 10 50 A40 40 0 0 1 50 10" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="10,15" />
                     </svg>
                     
                     <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-hana-line p-1 bg-white relative z-10 shadow-md">
-                        <!-- Logo 圖片：使用您的圖片 S__153395212.jpg -->
                         <img src="S__153395212.jpg" 
                              alt="Mei Yang Logo" 
                              class="w-full h-full object-cover rounded-full">
@@ -124,48 +129,57 @@
         <!-- 右側區塊：資訊內容 -->
         <div class="flex flex-col md:w-7/12 w-full md:pl-4">
             
-            <!-- 品牌簡介區塊 -->
-            <section class="text-center md:text-left mb-8 space-y-5">
-                <div class="space-y-3">
-                    <p class="text-sm md:text-base leading-8 tracking-wider text-hana-text font-medium">
-                        以「花」為手作的出發點，<br class="md:hidden">
-                        把花最美的姿態永久保存，<br class="md:hidden">
-                        是另一種延續的美好。
+            <!-- 品牌簡介區塊 (文字排版優化) -->
+            <section class="text-center md:text-left mb-8 space-y-6">
+                
+                <!-- 第一段：理念 -->
+                <div class="space-y-4">
+                    <p class="text-sm md:text-base leading-8 tracking-wider text-hana-text font-medium text-justify md:text-left break-words">
+                        以「花」為手作的出發點，把花最美的姿態永久保存，是另一種延續的美好。
                     </p>
-                    <p class="text-xs md:text-sm leading-7 text-hana-secondary font-normal mt-3">
-                        利用工藝樹脂、不凋花、乾燥花、日式凝膠<br>
-                        再搭配不同的異素材，讓飾品呈現出獨特的清新感
+                    <p class="text-xs md:text-sm leading-7 text-hana-secondary font-normal text-justify md:text-left">
+                        利用工藝樹脂、不凋花、乾燥花、日式凝膠，再搭配不同的異素材，讓飾品呈現出獨特的清新感。
                     </p>
-                    <p class="text-xs md:text-sm leading-7 text-hana-secondary font-normal mt-3">
-                        期待「美揚日系手作飾品」能帶給妳喜悅<br>
-                        成為精緻生活中的一部份
+                    <p class="text-xs md:text-sm leading-7 text-hana-secondary font-normal text-justify md:text-left">
+                        期待「美揚日系手作飾品」能帶給妳喜悅，成為精緻生活中的一部份。
                     </p>
-                    
-                    <!-- 介紹內容 -->
-                    <div class="mt-5 pt-5 border-t border-hana-line/50">
-                        <h4 class="text-sm font-bold text-hana-text tracking-widest mb-2">Mei Yang 美揚日系手作飾品</h4>
-                        <p class="text-xs md:text-sm leading-7 text-hana-secondary font-normal">
-                            日式職人手作技巧，搭配與結合不同異素材<br>
-                            使手作飾品呈現獨特美感，適合獨ㄧ無二特別的你/妳
-                        </p>
-                    </div>
                 </div>
 
-                <!-- 特點標籤 -->
-                <div class="pt-5 flex flex-col items-center md:items-start w-full">
+                <!-- 第二段：品牌宣言 (加上背景色塊強調) -->
+                <div class="py-4 px-5 bg-hana-green/10 rounded-lg border border-hana-green/20 relative mt-2">
+                    <i data-lucide="quote" class="w-4 h-4 text-hana-green absolute top-2 left-2 opacity-50"></i>
+                    <h4 class="text-sm font-bold text-hana-text tracking-widest mb-2 mt-1">Mei Yang 美揚日系手作飾品</h4>
+                    <p class="text-xs md:text-sm leading-7 text-hana-text/80 font-normal">
+                        日式職人手作技巧，搭配與結合不同異素材<br>
+                        使手作飾品呈現獨特美感，適合獨一無二特別的你/妳
+                    </p>
+                </div>
+
+                <!-- 第三段：特點與品項 (整合為標籤雲) -->
+                <div class="pt-2 flex flex-col items-center md:items-start w-full">
+                    <!-- 特點 -->
                     <div class="flex flex-wrap justify-center md:justify-start gap-2 mb-3">
                         <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">手工製作</span>
                         <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">原創飾品</span>
                         <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">日式手作</span>
                         <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest">異素材結合</span>
                     </div>
-                    <div class="text-[11px] md:text-xs text-hana-accent font-medium tracking-widest border-t border-hana-line pt-3 inline-block w-full text-center md:text-left mt-1">
-                        品項：耳環 · 項鍊 · 手鍊 · 髮飾 · 髮夾 · 吊飾 · 配件
+                    
+                    <!-- 品項 (優化排版：改成標籤樣式，而非長字串) -->
+                    <div class="flex flex-wrap justify-center md:justify-start gap-1.5 mt-1 border-t border-hana-line/50 pt-3 w-full">
+                        <span class="text-[11px] text-hana-accent font-bold tracking-widest mr-1 self-center">品項：</span>
+                        <span class="px-2 py-0.5 border border-hana-line rounded text-[11px] text-hana-secondary">耳環</span>
+                        <span class="px-2 py-0.5 border border-hana-line rounded text-[11px] text-hana-secondary">項鍊</span>
+                        <span class="px-2 py-0.5 border border-hana-line rounded text-[11px] text-hana-secondary">手鍊</span>
+                        <span class="px-2 py-0.5 border border-hana-line rounded text-[11px] text-hana-secondary">髮飾</span>
+                        <span class="px-2 py-0.5 border border-hana-line rounded text-[11px] text-hana-secondary">髮夾</span>
+                        <span class="px-2 py-0.5 border border-hana-line rounded text-[11px] text-hana-secondary">吊飾</span>
+                        <span class="px-2 py-0.5 border border-hana-line rounded text-[11px] text-hana-secondary">配件</span>
                     </div>
                 </div>
             </section>
 
-            <!-- 互換位置：先顯示 社群追蹤區塊 -->
+            <!-- 社群追蹤區塊 (位置：中) -->
             <div class="w-full bg-white/80 p-6 rounded-xl border border-hana-line mb-8 relative overflow-hidden group shadow-md hover:shadow-lg transition-shadow duration-300">
                 <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-hana-pink to-hana-green opacity-80"></div>
                 
@@ -192,7 +206,7 @@
                 </div>
             </div>
 
-            <!-- 互換位置：後顯示 精選作品區塊 -->
+            <!-- 精選作品區塊 (位置：下) -->
             <section class="mb-8 w-full mt-auto">
                 <div class="flex items-center gap-3 mb-4 justify-center md:justify-start opacity-80">
                     <span class="text-xs tracking-[0.2em] text-hana-accent font-bold uppercase">Selected Works</span>
