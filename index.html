@@ -61,7 +61,6 @@
             background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3h1v1H1V3zm2-2h1v1H3V1z' fill='%238C7B70' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
 
-        /* 隱藏捲軸但保留功能 (for tags scroll) */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -70,16 +69,14 @@
             scrollbar-width: none;
         }
 
-        /* 新的動畫樣式：花漾擺動 (Sway) 
-           模擬風鈴或花朵隨風輕輕擺動的感覺
-        */
+        /* Logo 動畫：花漾擺動 */
         @keyframes sway {
             0%, 100% { transform: rotate(-8deg); }
             50% { transform: rotate(8deg); }
         }
         
         .animate-sway {
-            animation: sway 4s ease-in-out infinite; /* 4秒一個來回，輕柔緩慢 */
+            animation: sway 4s ease-in-out infinite; 
             transform-origin: center center;
         }
     </style>
@@ -103,19 +100,14 @@
             <!-- Header -->
             <header class="flex flex-col items-center mb-8 md:mb-0 relative">
                 <div class="relative mb-6">
-                    <!-- 
-                        Logo 動畫圈圈 
-                        目前的 class: animate-sway (左右輕擺)
-                    -->
                     <svg class="absolute -top-4 -left-4 w-40 h-40 text-hana-green animate-sway opacity-60 pointer-events-none" viewBox="0 0 100 100">
-                        <!-- 雙層裝飾線圈 -->
                         <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="3,6" />
                         <path d="M50 8 A42 42 0 0 1 92 50 A42 42 0 0 1 50 92 A42 42 0 0 1 8 50 A42 42 0 0 1 50 8" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="12,12" opacity="0.7"/>
-                        <!-- 裝飾葉子小點綴 -->
                         <path d="M50 4 L52 0 L54 4" fill="none" stroke="currentColor" stroke-width="1" />
                     </svg>
                     
                     <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-hana-line p-1 bg-white relative z-10 shadow-md">
+                        <!-- 請確保 S__153395212.jpg 在同一個資料夾 -->
                         <img src="S__153395212.jpg" 
                              alt="Mei Yang Logo" 
                              class="w-full h-full object-cover rounded-full">
@@ -163,9 +155,9 @@
                     </p>
                 </div>
 
-                <!-- 第三段：特點與品項 (調整為單行呈現) -->
+                <!-- 第三段：特點與品項 -->
                 <div class="pt-2 flex flex-col items-center md:items-start w-full">
-                    <!-- 特點 (單行橫向滑動/排列) -->
+                    <!-- 特點 (單行橫向) -->
                     <div class="flex flex-nowrap overflow-x-auto no-scrollbar w-full justify-center md:justify-start gap-2 mb-3 pb-1">
                         <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest whitespace-nowrap">手工製作</span>
                         <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest whitespace-nowrap">原創飾品</span>
@@ -173,7 +165,7 @@
                         <span class="px-3 py-1 bg-hana-green/30 border border-hana-green/40 rounded-full text-[12px] text-hana-text font-medium tracking-widest whitespace-nowrap">異素材結合</span>
                     </div>
                     
-                    <!-- 品項 (改為單行文字列表，更加日系簡約) -->
+                    <!-- 品項 (單行文字列表) -->
                     <div class="mt-2 border-t border-hana-line/50 pt-3 w-full text-center md:text-left">
                          <p class="text-[12px] text-hana-secondary tracking-wider leading-loose">
                             <span class="text-hana-accent font-bold mr-1">品項：</span>
@@ -181,7 +173,7 @@
                         </p>
                     </div>
 
-                    <!-- 合作邀約 (從 Footer 移到這裡) -->
+                    <!-- 合作邀約 -->
                     <div class="mt-4 w-full text-center md:text-left">
                          <div class="text-xs text-hana-text font-medium tracking-wide inline-block py-2 px-4 border border-dashed border-hana-line rounded-md bg-white/50 w-full md:w-auto">
                             歡迎合作邀約，可私訊聊聊 <span class="text-hana-accent font-normal ml-1">小幫手會盡速回復喔!!</span>
@@ -203,7 +195,6 @@
                         歡迎關注 ➕ 🔍 <span class="font-sans font-bold text-hana-text ml-1 text-sm">meiyang.16888</span>
                     </p>
 
-                    <!-- IG 按鈕 -->
                     <a href="https://www.instagram.com/meiyang.16888" target="_blank" rel="noopener noreferrer" class="block w-full py-3 bg-hana-pink/30 border border-hana-pink/50 hover:bg-hana-pink/50 text-hana-text rounded-lg text-xs md:text-sm tracking-wider transition-all my-2 font-bold flex items-center justify-center gap-2 group-hover:scale-[1.02]">
                         <span>追蹤 IG 搶先看</span>
                         <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
@@ -217,7 +208,7 @@
                 </div>
             </div>
 
-            <!-- 精選作品區塊 -->
+            <!-- 精選作品區塊 (圖片已更新為您上傳的四張) -->
             <section class="mb-8 w-full mt-auto">
                 <div class="flex items-center gap-3 mb-4 justify-center md:justify-start opacity-80">
                     <span class="text-xs tracking-[0.2em] text-hana-accent font-bold uppercase">Selected Works</span>
@@ -225,38 +216,42 @@
                 </div>
                 
                 <div class="grid grid-cols-2 gap-3">
-                    <!-- Item 1 -->
+                    <!-- Item 1: 方形/貓掌款 -->
                     <div class="aspect-square bg-white p-2 shadow-sm border border-hana-line/40 rounded-sm group overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" alt="耳環">
+                        <!-- 請將您的第一張照片命名為 product_01.png -->
+                        <img src="product_01.png" class="w-full h-full object-cover opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" alt="日系手作飾品-方形與貓掌">
+                        <div class="absolute bottom-0 left-0 w-full p-2 bg-white/90 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                            <p class="text-[10px] text-hana-text text-center tracking-widest font-sans uppercase">Handmade</p>
+                        </div>
+                    </div>
+                    <!-- Item 2: 花朵圈圈款 -->
+                    <div class="aspect-square bg-white p-2 shadow-sm border border-hana-line/40 rounded-sm group overflow-hidden relative">
+                        <!-- 請將您的第二張照片命名為 product_02.png -->
+                        <img src="product_02.png" class="w-full h-full object-cover opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" alt="日系手作飾品-花朵圈圈">
                         <div class="absolute bottom-0 left-0 w-full p-2 bg-white/90 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                             <p class="text-[10px] text-hana-text text-center tracking-widest font-sans uppercase">Earrings</p>
                         </div>
                     </div>
-                    <!-- Item 2 -->
+                    <!-- Item 3: 橢圓/幾何款 -->
                     <div class="aspect-square bg-white p-2 shadow-sm border border-hana-line/40 rounded-sm group overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" alt="手鍊">
-                        <div class="absolute bottom-0 left-0 w-full p-2 bg-white/90 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                            <p class="text-[10px] text-hana-text text-center tracking-widest font-sans uppercase">Bracelet</p>
+                        <!-- 請將您的第三張照片命名為 product_03.png -->
+                        <img src="product_03.png" class="w-full h-full object-cover opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" alt="日系手作飾品-橢圓幾何">
+                         <div class="absolute bottom-0 left-0 w-full p-2 bg-white/90 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                            <p class="text-[10px] text-hana-text text-center tracking-widest font-sans uppercase">Resin Art</p>
                         </div>
                     </div>
-                    <!-- Item 3 -->
+                     <!-- Item 4: 圓形耳針款 -->
                     <div class="aspect-square bg-white p-2 shadow-sm border border-hana-line/40 rounded-sm group overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" alt="項鍊">
+                        <!-- 請將您的第四張照片命名為 product_04.png -->
+                        <img src="product_04.png" class="w-full h-full object-cover opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" alt="日系手作飾品-圓形耳針">
                          <div class="absolute bottom-0 left-0 w-full p-2 bg-white/90 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                            <p class="text-[10px] text-hana-text text-center tracking-widest font-sans uppercase">Necklace</p>
-                        </div>
-                    </div>
-                     <!-- Item 4 -->
-                    <div class="aspect-square bg-white p-2 shadow-sm border border-hana-line/40 rounded-sm group overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1606166325683-e6deb697d301?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" alt="戒指">
-                         <div class="absolute bottom-0 left-0 w-full p-2 bg-white/90 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                            <p class="text-[10px] text-hana-text text-center tracking-widest font-sans uppercase">Ring</p>
+                            <p class="text-[10px] text-hana-text text-center tracking-widest font-sans uppercase">Design</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Footer (純版權宣告) -->
+            <!-- Footer -->
             <footer class="mt-8 pt-6 border-t border-hana-line/30 flex flex-col items-center md:items-start text-center md:text-left relative z-10 w-full">
                 <div class="w-full text-center md:text-right">
                     <p class="text-[10px] text-hana-secondary/60 tracking-[0.2em] font-sans font-medium">© 2024 Mei Yang 美揚日系手作飾品</p>
